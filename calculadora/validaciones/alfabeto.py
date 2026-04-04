@@ -30,4 +30,12 @@ def validar_simbolos(cadena: str) -> bool:
         >>> validar_simbolos("  XIV  ")
         True
     """
-    raise NotImplementedError()
+ # Defino el alfabeto
+    alfabeto = "IVXLCDM"
+    # Elimino espacios en blanco laterales
+    cadena = cadena.strip()
+    # Si la cadena está vacía después de strip = false
+    if not cadena:
+        return False
+    # Si no está vacía, validamos cada caracter
+    return all(caracter in alfabeto for caracter in cadena)

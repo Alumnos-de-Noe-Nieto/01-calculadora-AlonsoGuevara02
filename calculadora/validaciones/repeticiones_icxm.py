@@ -36,4 +36,17 @@ def validar_repeticiones_icxm(cadena: str) -> bool:
         >>> validar_repeticiones_icxm("MMMM")
         False
     """
-    raise NotImplementedError()
+    """
+Nivel 2: Validación de repeticiones I/X/C/M.
+
+Los símbolos I, X, C y M pueden repetirse hasta 3 veces consecutivas.
+Ejemplos válidos: III, XXX, CCC, MMM
+Ejemplos inválidos: IIII, XXXX, CCCC, MMMM
+"""
+    patrones_invalidos = ["IIII", "XXXX", "CCCC", "MMMM"]
+    # Revisa si alguno de esos simbolos aparecen en la cadena
+    # recomendado por ruff
+    if not cadena.strip():
+        return False
+    return all(patron not in cadena for patron in patrones_invalidos)
+
