@@ -43,4 +43,27 @@ def validar_restas(cadena: str) -> bool:
         >>> validar_restas("MCMXCIV")
         True
     """
-    raise NotImplementedError()
+    valores = {
+        "I": 1, "V": 5, "X": 10,
+        "L": 50, "C": 100, "D": 500, "M": 1000
+    }
+    sustracciones_validas = {"IV", "IX", "XL", "XC", "CD", "CM"}
+    i = 0
+    while i < len(cadena) - 1:
+        actual = cadena[i]
+        siguiente = cadena[i + 1]
+        # vemos una posible resta
+        if valores[actual] < valores[siguiente]:
+            par = actual + siguiente
+            # Si el par no está en las restas válidas = invalido
+            if par not in sustracciones_validas:
+                return False
+            # Revisamos que no haya repeticiones antes
+            if i > 0 and cadena[i - 1] == actual:
+                return False
+            # avanzamos dos posiciones por que ya validamos el par
+            i += 2
+            continue
+        # si no se tiene que restar nada se avanza normalmente
+        i += 1
+    return True

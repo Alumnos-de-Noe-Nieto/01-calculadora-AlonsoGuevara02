@@ -34,4 +34,12 @@ def validar_repeticiones_vld(cadena: str) -> bool:
         >>> validar_repeticiones_vld("DD")
         False
     """
-    raise NotImplementedError()
+    # La misma sintaxis de antes solo que ahora con vv, ll y dd
+    patrones_invalidos = ["VV", "LL", "DD"]
+    # Revisamos si alguno de esos simbolos aparece en la cadena
+      # Si la cadena está vacía → no es válida
+    if not cadena.strip():
+        return False
+    # retorna True solo si ninguno de los patrones inválidos aparece
+    # simplificado por ruff
+    return all(patron not in cadena for patron in patrones_invalidos)
